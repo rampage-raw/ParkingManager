@@ -298,17 +298,19 @@ void MainWindow::sqlmonthmember(){
 }
 
 void MainWindow::sqlreservation(QString parkingname, int carpos, QDateTime statime, QDateTime endtime){
+    int flag = 0;
     QSqlQuery query;
     QString inquire = QString("select finish from book where id = '%1'").arg(userid);
     query.exec(inquire);
     QString fin;
     while(query.next()){
         fin = query.value(0).toString();
+        if(fin == "no"){
+            flag = 1;
+            QMessageBox::warning(nullptr, QStringLiteral("错误"), QStringLiteral("您有一个订单在进行中"), QMessageBox::Yes);
+        }
     }
-    if(fin == "no"){
-        QMessageBox::warning(nullptr, QStringLiteral("错误"), QStringLiteral("您有一个订单在进行中"), QMessageBox::Yes);
-    }
-    else{
+    if(!flag){
         QString inquire_2 = QString("select situation from parkingspace where carpos = '%1' and parkingname = '%2'").arg(carpos).arg(parkingname);
         if(query.exec(inquire_2)){
             QString rec;
