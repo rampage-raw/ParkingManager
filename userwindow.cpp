@@ -116,6 +116,9 @@ void userwindow::reservation(){
             QMessageBox::warning(nullptr, QStringLiteral("错误"), QStringLiteral("请输入预约的结束时间"), QMessageBox::Yes);
         }
         else{
+            ui->lineEdit->clear();
+            ui->lineEdit_2->clear();
+            timerUpdate();
             emit(send_main_reservation(parkingname, carpos, statime, endtime));
         }
     }
