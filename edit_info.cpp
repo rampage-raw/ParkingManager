@@ -24,6 +24,9 @@ void edit_info::emit_user_updateinfo(){
         QMessageBox::warning(nullptr, QStringLiteral("错误"), QStringLiteral("输入的信息不能为空"), QMessageBox::Yes);
     }
     else{
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
+        ui->lineEdit_3->clear();
         emit(send_user_updateinfo(name, tel, carid, cartype));
     }
 
