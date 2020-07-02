@@ -27,6 +27,9 @@ void update_password::dealpass(){
             QMessageBox::warning(nullptr, QStringLiteral("错误"), QStringLiteral("两次输入的密码不一致"), QMessageBox::Yes);
         }
         else{
+            ui->lineEdit->clear();
+            ui->lineEdit_2->clear();
+            ui->lineEdit_3->clear();
             emit(sendpassword(oldpass, newpass));
         }
     }
